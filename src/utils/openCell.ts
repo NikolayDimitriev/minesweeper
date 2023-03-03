@@ -17,268 +17,85 @@ function openNeighborsCells(matrix: TBoard, cell: TCellInfo) {
   matrix[i][j].isOpened = true;
 
   if (i === 0 && j === 0) {
-    if (matrix[i + 1][j].value === 0 && matrix[i + 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i + 1][j]);
-    } else {
-      matrix[i + 1][j].isOpened = true;
-    }
-    if (matrix[i][j + 1].value === 0 && matrix[i][j + 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j + 1]);
-    } else {
-      matrix[i][j + 1].isOpened = true;
-    }
-    if (
-      matrix[i + 1][j + 1].value === 0 &&
-      matrix[i + 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j + 1]);
-    } else {
-      matrix[i + 1][j + 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j + 1);
   } else if (i === 15 && j === 15) {
-    if (matrix[i - 1][j].value === 0 && matrix[i - 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i - 1][j]);
-    } else {
-      matrix[i - 1][j].isOpened = true;
-    }
-    if (matrix[i][j - 1].value === 0 && matrix[i][j - 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j - 1]);
-    } else {
-      matrix[i][j - 1].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j - 1].value === 0 &&
-      matrix[i - 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j - 1]);
-    } else {
-      matrix[i - 1][j - 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j - 1);
   } else if (i === 0 && j === 15) {
-    if (matrix[i + 1][j].value === 0 && matrix[i + 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i + 1][j]);
-    } else {
-      matrix[i + 1][j].isOpened = true;
-    }
-    if (matrix[i][j - 1].value === 0 && matrix[i][j - 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j - 1]);
-    } else {
-      matrix[i][j - 1].isOpened = true;
-    }
-    if (
-      matrix[i + 1][j - 1].value === 0 &&
-      matrix[i + 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j - 1]);
-    } else {
-      matrix[i + 1][j - 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j - 1);
   } else if (i === 15 && j === 0) {
-    if (matrix[i - 1][j].value === 0 && matrix[i - 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i - 1][j]);
-    } else {
-      matrix[i - 1][j].isOpened = true;
-    }
-    if (matrix[i][j + 1].value === 0 && matrix[i][j + 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j + 1]);
-    } else {
-      matrix[i][j + 1].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j + 1].value === 0 &&
-      matrix[i - 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j + 1]);
-    } else {
-      matrix[i - 1][j + 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j + 1);
   } else if (i === 0) {
-    if (matrix[i + 1][j].value === 0 && matrix[i + 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i + 1][j]);
-    } else {
-      matrix[i + 1][j].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j);
 
-    if (
-      matrix[i + 1][j + 1].value === 0 &&
-      matrix[i + 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j + 1]);
-    } else {
-      matrix[i + 1][j + 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j + 1);
 
-    if (
-      matrix[i + 1][j - 1].value === 0 &&
-      matrix[i + 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j - 1]);
-    } else {
-      matrix[i + 1][j - 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j - 1);
 
-    if (matrix[i][j + 1].value === 0 && matrix[i][j + 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j + 1]);
-    } else {
-      matrix[i][j + 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i, j + 1);
 
-    if (matrix[i][j - 1].value === 0 && matrix[i][j - 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j - 1]);
-    } else {
-      matrix[i][j - 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i, j - 1);
   } else if (i === 15) {
-    if (matrix[i - 1][j].value === 0 && matrix[i - 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i - 1][j]);
-    } else {
-      matrix[i - 1][j].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j + 1].value === 0 &&
-      matrix[i - 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j + 1]);
-    } else {
-      matrix[i - 1][j + 1].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j - 1].value === 0 &&
-      matrix[i - 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j - 1]);
-    } else {
-      matrix[i - 1][j - 1].isOpened = true;
-    }
-    if (matrix[i][j + 1].value === 0 && matrix[i][j + 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j + 1]);
-    } else {
-      matrix[i][j + 1].isOpened = true;
-    }
-    if (matrix[i][j - 1].value === 0 && matrix[i][j - 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j - 1]);
-    } else {
-      matrix[i][j - 1].isOpened = true;
-    }
-  } else if (j === 0) {
-    if (matrix[i - 1][j].value === 0 && matrix[i - 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i - 1][j]);
-    } else {
-      matrix[i - 1][j].isOpened = true;
-    }
-    if (matrix[i + 1][j].value === 0 && matrix[i + 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i + 1][j]);
-    } else {
-      matrix[i + 1][j].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j + 1].value === 0 &&
-      matrix[i - 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j + 1]);
-    } else {
-      matrix[i - 1][j + 1].isOpened = true;
-    }
-    if (matrix[i][j + 1].value === 0 && matrix[i][j + 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j + 1]);
-    } else {
-      matrix[i][j + 1].isOpened = true;
-    }
-    if (
-      matrix[i + 1][j + 1].value === 0 &&
-      matrix[i + 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j + 1]);
-    } else {
-      matrix[i + 1][j + 1].isOpened = true;
-    }
-  } else if (j === 15) {
-    if (matrix[i - 1][j].value === 0 && matrix[i - 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i - 1][j]);
-    } else {
-      matrix[i - 1][j].isOpened = true;
-    }
-    if (matrix[i + 1][j].value === 0 && matrix[i + 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i + 1][j]);
-    } else {
-      matrix[i + 1][j].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j - 1].value === 0 &&
-      matrix[i - 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j - 1]);
-    } else {
-      matrix[i - 1][j - 1].isOpened = true;
-    }
-    if (matrix[i][j - 1].value === 0 && matrix[i][j - 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j - 1]);
-    } else {
-      matrix[i][j - 1].isOpened = true;
-    }
-    if (
-      matrix[i + 1][j - 1].value === 0 &&
-      matrix[i + 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j - 1]);
-    } else {
-      matrix[i + 1][j - 1].isOpened = true;
-    }
-  } else {
-    if (matrix[i - 1][j].value === 0 && matrix[i - 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i - 1][j]);
-    } else {
-      matrix[i - 1][j].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j + 1].value === 0 &&
-      matrix[i - 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j + 1]);
-    } else {
-      matrix[i - 1][j + 1].isOpened = true;
-    }
-    if (
-      matrix[i - 1][j - 1].value === 0 &&
-      matrix[i - 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i - 1][j - 1]);
-    } else {
-      matrix[i - 1][j - 1].isOpened = true;
-    }
-    if (matrix[i + 1][j].value === 0 && matrix[i + 1][j].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i + 1][j]);
-    } else {
-      matrix[i + 1][j].isOpened = true;
-    }
-    if (
-      matrix[i + 1][j + 1].value === 0 &&
-      matrix[i + 1][j + 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j + 1]);
-    } else {
-      matrix[i + 1][j + 1].isOpened = true;
-    }
-    if (
-      matrix[i + 1][j - 1].value === 0 &&
-      matrix[i + 1][j - 1].isOpened === false
-    ) {
-      openNeighborsCells(matrix, matrix[i + 1][j - 1]);
-    } else {
-      matrix[i + 1][j - 1].isOpened = true;
-    }
-    if (matrix[i][j + 1].value === 0 && matrix[i][j + 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j + 1]);
-    } else {
-      matrix[i][j + 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j);
 
-    // checkOnZeroValueOrOpenCell(matrix, i, j - 1);
-    if (matrix[i][j - 1].value === 0 && matrix[i][j - 1].isOpened === false) {
-      openNeighborsCells(matrix, matrix[i][j - 1]);
-    } else {
-      matrix[i][j - 1].isOpened = true;
-    }
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j - 1);
+  } else if (j === 0) {
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j + 1);
+  } else if (j === 15) {
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j - 1);
+  } else {
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i - 1, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i + 1, j - 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j + 1);
+
+    checkOnZeroValueOrOpenCell(matrix, i, j - 1);
   }
 }
 
