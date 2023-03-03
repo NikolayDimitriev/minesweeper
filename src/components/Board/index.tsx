@@ -53,6 +53,7 @@ export function Board({ matrix }: TBoardProps) {
     if (isFirstClick) {
       setIsFirstClick(false);
       generateMine(newBoard, cell);
+      console.log(newBoard);
       return;
     }
     updateBoardWithOpenedCells(newBoard, cell);
