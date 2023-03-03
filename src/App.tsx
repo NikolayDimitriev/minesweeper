@@ -1,9 +1,18 @@
 import { Board } from './components/Board';
-
-const matrix: number[][] = Array(16)
-  .fill(0)
-  .map(() => Array(16).fill(0));
+import { createBoard } from './utils';
+import { TMatrix } from './common.types';
+import classes from './App.module.css';
 
 export function App() {
-  return <Board matrix={matrix} />;
+  const matrix: TMatrix = createBoard();
+  return (
+    <div className={classes.app}>
+      <div className={classes.menu}>
+        <div className={classes.countMines}></div>
+        <div className={classes.mainBtn}></div>
+        <div className={classes.timer}></div>
+      </div>
+      <Board matrix={matrix} />
+    </div>
+  );
 }

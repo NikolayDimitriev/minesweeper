@@ -1,5 +1,7 @@
+import { TMatrix } from '../common.types';
+
 export function increaseCellsValuesAroundMine(
-  matrix: number[][],
+  matrix: TMatrix,
   i: number,
   j: number
 ) {
@@ -30,58 +32,58 @@ export function increaseCellsValuesAroundMine(
   }
 }
 
-function increaseRightUpTriangle(matrix: number[][], i: number, j: number) {
-  matrix[i - 1][j] += 1;
-  matrix[i][j + 1] += 1;
-  matrix[i - 1][j + 1] += 1;
+function increaseRightUpTriangle(matrix: TMatrix, i: number, j: number) {
+  matrix[i - 1][j].value += 1;
+  matrix[i][j + 1].value += 1;
+  matrix[i - 1][j + 1].value += 1;
 }
-function increaseRightDownTriangle(matrix: number[][], i: number, j: number) {
-  matrix[i + 1][j] += 1;
-  matrix[i][j + 1] += 1;
-  matrix[i + 1][j + 1] += 1;
-}
-
-function increaseLeftUpTriangle(matrix: number[][], i: number, j: number) {
-  matrix[i - 1][j] += 1;
-  matrix[i][j - 1] += 1;
-  matrix[i - 1][j - 1] += 1;
+function increaseRightDownTriangle(matrix: TMatrix, i: number, j: number) {
+  matrix[i + 1][j].value += 1;
+  matrix[i][j + 1].value += 1;
+  matrix[i + 1][j + 1].value += 1;
 }
 
-function increaseLeftDownTriangle(matrix: number[][], i: number, j: number) {
-  matrix[i + 1][j] += 1;
-  matrix[i][j - 1] += 1;
-  matrix[i + 1][j - 1] += 1;
+function increaseLeftUpTriangle(matrix: TMatrix, i: number, j: number) {
+  matrix[i - 1][j].value += 1;
+  matrix[i][j - 1].value += 1;
+  matrix[i - 1][j - 1].value += 1;
 }
 
-function increaseRightThreeCells(matrix: number[][], i: number, j: number) {
-  matrix[i + 1][j] += 1;
-  matrix[i + 1][j + 1] += 1;
-  matrix[i + 1][j - 1] += 1;
+function increaseLeftDownTriangle(matrix: TMatrix, i: number, j: number) {
+  matrix[i + 1][j].value += 1;
+  matrix[i][j - 1].value += 1;
+  matrix[i + 1][j - 1].value += 1;
 }
 
-function increaseLeftThreeCells(matrix: number[][], i: number, j: number) {
-  matrix[i - 1][j] += 1;
-  matrix[i - 1][j + 1] += 1;
-  matrix[i - 1][j - 1] += 1;
+function increaseRightThreeCells(matrix: TMatrix, i: number, j: number) {
+  matrix[i + 1][j].value += 1;
+  matrix[i + 1][j + 1].value += 1;
+  matrix[i + 1][j - 1].value += 1;
 }
 
-function increaseDownThreeCells(matrix: number[][], i: number, j: number) {
-  matrix[i - 1][j + 1] += 1;
-  matrix[i][j + 1] += 1;
-  matrix[i + 1][j + 1] += 1;
+function increaseLeftThreeCells(matrix: TMatrix, i: number, j: number) {
+  matrix[i - 1][j].value += 1;
+  matrix[i - 1][j + 1].value += 1;
+  matrix[i - 1][j - 1].value += 1;
 }
 
-function increaseUpThreeCells(matrix: number[][], i: number, j: number) {
-  matrix[i - 1][j - 1] += 1;
-  matrix[i][j - 1] += 1;
-  matrix[i + 1][j - 1] += 1;
+function increaseDownThreeCells(matrix: TMatrix, i: number, j: number) {
+  matrix[i - 1][j + 1].value += 1;
+  matrix[i][j + 1].value += 1;
+  matrix[i + 1][j + 1].value += 1;
 }
 
-function increaseUpAndDownCells(matrix: number[][], i: number, j: number) {
-  matrix[i][j + 1] += 1;
-  matrix[i][j - 1] += 1;
+function increaseUpThreeCells(matrix: TMatrix, i: number, j: number) {
+  matrix[i - 1][j - 1].value += 1;
+  matrix[i][j - 1].value += 1;
+  matrix[i + 1][j - 1].value += 1;
 }
-function increaseLeftAndRightCells(matrix: number[][], i: number, j: number) {
-  matrix[i - 1][j] += 1;
-  matrix[i + 1][j] += 1;
+
+function increaseUpAndDownCells(matrix: TMatrix, i: number, j: number) {
+  matrix[i][j + 1].value += 1;
+  matrix[i][j - 1].value += 1;
+}
+function increaseLeftAndRightCells(matrix: TMatrix, i: number, j: number) {
+  matrix[i - 1][j].value += 1;
+  matrix[i + 1][j].value += 1;
 }

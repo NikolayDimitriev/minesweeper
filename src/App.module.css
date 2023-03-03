@@ -1,0 +1,14 @@
+.app {
+  width: calc(18px * 16 + 20px);
+  height: calc(18px * 16 + 60px + 20px);
+  background-color: #c6c6c6;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  width: 100%;
+  height: 50px;
+  flex-grow: 1;
+}

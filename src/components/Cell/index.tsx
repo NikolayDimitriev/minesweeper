@@ -1,15 +1,19 @@
+import { TCellInfo } from '../../common.types';
+import cn from 'classnames';
 import classes from './style.module.css';
 
 type TCellProps = {
-  cell: number;
-  board: number[][];
-  generateMine: () => void;
+  cell: TCellInfo;
+  handleCellClick: (cell: TCellInfo) => void;
 };
 
-export function Cell({ cell, generateMine }: TCellProps) {
+export function Cell({ cell, handleCellClick }: TCellProps) {
   return (
-    <button onClick={generateMine} className={classes.cell}>
-      {cell}
+    <button
+      onClick={() => handleCellClick(cell)}
+      className={cn(classes.cell, classes.closed)}
+    >
+      {cell.isOpened && cell.value}
     </button>
   );
 }
