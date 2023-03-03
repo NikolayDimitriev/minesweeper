@@ -1,6 +1,6 @@
-import { TMatrix, TCellInfo } from '../common.types';
+import { TBoard, TCellInfo } from '../common.types';
 
-export function openCell(matrix: TMatrix, cell: TCellInfo): TMatrix {
+export function openCell(matrix: TBoard, cell: TCellInfo): TBoard {
   matrix[cell.x][cell.y].isOpened = true;
   return matrix;
 }

@@ -1,10 +1,10 @@
 import { Board } from './components/Board';
 import { createBoard } from './utils';
-import { TMatrix } from './common.types';
+import { TBoard } from './common.types';
 import classes from './App.module.css';
 
 export function App() {
-  const matrix: TMatrix = createBoard();
+  const matrix: TBoard = createBoard();
   return (
     <div className={classes.app}>
       <div className={classes.menu}>

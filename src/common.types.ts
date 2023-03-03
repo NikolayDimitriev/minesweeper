@@ -1,4 +1,5 @@
 export type TCellInfo = {
+  id: string;
   value: number;
   x: number;
   y: number;
@@ -7,4 +8,4 @@ export type TCellInfo = {
   isFlagged: boolean;
 };
 
-export type TMatrix = TCellInfo[][];
+export type TBoard = TCellInfo[][];

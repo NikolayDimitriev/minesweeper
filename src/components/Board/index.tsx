@@ -5,19 +5,25 @@ import {
   getRandomInt,
   openCell,
 } from '../../utils/';
-import { TCellInfo, TMatrix } from '../../common.types';
+import { TCellInfo, TBoard } from '../../common.types';
 import classes from './style.module.css';
+import { nanoid } from 'nanoid';
 
 type TBoardProps = {
-  matrix: TMatrix;
+  matrix: TBoard;
 };
 
 export function Board({ matrix }: TBoardProps) {
   const [board, setBoard] = useState(matrix);
   const [isFirstClick, setIsFirstClick] = useState(true);
 
-  function generateMine(firstClickedCell: TCellInfo) {
-    const newBoard = [...board] as TMatrix;
+  function updateBoardWithOpenedCells(board: TBoard, cell: TCellInfo) {
+    const newBoardWithOpenCells = openCell(board, cell);
+
+    setBoard(newBoardWithOpenCells);
+  }
+
+  function generateMine(newBoard: TBoard, firstClickedCell: TCellInfo) {
     let minesCount = 0;
 
     while (minesCount < 40) {
@@ -43,29 +49,23 @@ export function Board({ matrix }: TBoardProps) {
   }
 
   function handleCellClick(cell: TCellInfo) {
+    const newBoard = JSON.parse(JSON.stringify(board));
     if (isFirstClick) {
       setIsFirstClick(false);
-      generateMine(cell);
-      openCell(board, cell);
+      generateMine(newBoard, cell);
       return;
     }
-    updateBoardWithOpenedCells(board, cell);
-  }
-
-  function updateBoardWithOpenedCells(board: TMatrix, cell: TCellInfo) {
-    const newBoardWithOpenCells = openCell(board, cell);
-
-    setBoard(newBoardWithOpenCells);
+    updateBoardWithOpenedCells(newBoard, cell);
   }
 
   return (
     <div className={classes.board}>
-      {board.map((line, i) => {
+      {board.map((line) => {
         return (
-          <div key={i} className={classes.line}>
-            {line.map((cell: TCellInfo, index) => (
+          <div key={nanoid()} className={classes.line}>
+            {line.map((cell: TCellInfo) => (
               <Cell
-                key={i * 2 + index}
+                key={cell.id}
                 cell={cell}
                 handleCellClick={handleCellClick}
               />
