@@ -15,6 +15,7 @@ export function createBoard(): TBoard {
         isFlagged: false,
         isQuestioned: false,
         isDefused: false,
+        isBlowned: false,
       } as TCellInfo);
     }
     board.push(line);

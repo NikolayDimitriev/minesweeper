@@ -1,22 +1,31 @@
-import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { Cell } from '../Cell';
 import {
   increaseCellsValuesAroundMine,
   getRandomInt,
   openCell,
+  endGame,
 } from '../../utils/';
 import { TCellInfo, TBoard } from '../../common.types';
 import classes from './style.module.css';
-import { nanoid } from 'nanoid';
 
 type TBoardProps = {
-  matrix: TBoard;
+  board: TBoard;
+  setBoard: React.Dispatch<React.SetStateAction<TBoard>>;
+  isLose: boolean;
+  setIsLose: React.Dispatch<React.SetStateAction<boolean>>;
+  isFirstClick: boolean;
+  setIsFirstClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export function Board({ matrix }: TBoardProps) {
-  const [board, setBoard] = useState(matrix);
-  const [isFirstClick, setIsFirstClick] = useState(true);
-
+export function Board({
+  board,
+  setBoard,
+  isLose,
+  setIsLose,
+  isFirstClick,
+  setIsFirstClick,
+}: TBoardProps) {
   function updateBoardWithOpenedCells(board: TBoard, cell: TCellInfo) {
     const newBoardWithOpenCells = openCell(board, cell);
 
@@ -49,13 +58,50 @@ export function Board({ matrix }: TBoardProps) {
   }
 
   function handleCellClick(cell: TCellInfo) {
-    const newBoard = JSON.parse(JSON.stringify(board));
+    // Нельзя нажать, если выделено флажком, вопросов, уже открыто или проиграно
+    if (cell.isFlagged || cell.isOpened || cell.isQuestioned || isLose) {
+      return;
+    }
+
+    const newBoard: TBoard = JSON.parse(JSON.stringify(board));
     if (isFirstClick) {
       setIsFirstClick(false);
       generateMine(newBoard, cell);
       return;
     }
+
+    // Попали на мину
+    if (cell.value === -1) {
+      newBoard[cell.x][cell.y].isBlowned = true;
+      setIsLose(true);
+      setBoard(endGame(newBoard));
+      return;
+    }
+
     updateBoardWithOpenedCells(newBoard, cell);
+  }
+
+  function handleRightClick(cell: TCellInfo) {
+    if (cell.isOpened) {
+      return;
+    }
+    const newBoard: TBoard = JSON.parse(JSON.stringify(board));
+
+    const i = cell.x;
+    const j = cell.y;
+
+    if (cell.isFlagged) {
+      newBoard[i][j].isFlagged = false;
+      newBoard[i][j].isQuestioned = true;
+    } else if (cell.isQuestioned) {
+      newBoard[i][j].isFlagged = false;
+      newBoard[i][j].isQuestioned = false;
+    } else {
+      newBoard[i][j].isFlagged = true;
+      newBoard[i][j].isQuestioned = false;
+    }
+
+    setBoard(newBoard);
   }
 
   return (
@@ -68,6 +114,7 @@ export function Board({ matrix }: TBoardProps) {
                 key={cell.id}
                 cell={cell}
                 handleCellClick={handleCellClick}
+                handleRightClick={handleRightClick}
               />
             ))}
           </div>

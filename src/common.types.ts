@@ -7,6 +7,7 @@ export type TCellInfo = {
   isFlagged: boolean;
   isQuestioned: boolean;
   isDefused: boolean;
+  isBlowned: boolean;
 };
 
 export type TBoard = TCellInfo[][];
