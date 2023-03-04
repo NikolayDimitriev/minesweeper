@@ -4,7 +4,8 @@ import {
   increaseCellsValuesAroundMine,
   getRandomInt,
   openCell,
-  endGame,
+  openAllMine,
+  checkOnWin,
 } from '../../utils/';
 import { TCellInfo, TBoard } from '../../common.types';
 import classes from './style.module.css';
@@ -30,6 +31,17 @@ export function Board({
     const newBoardWithOpenCells = openCell(board, cell);
 
     setBoard(newBoardWithOpenCells);
+
+    checkWin(newBoardWithOpenCells);
+  }
+
+  function checkWin(board: TBoard) {
+    const isWin = checkOnWin(board);
+    console.log('win: ', isWin);
+    if (isWin) {
+      const newBoardWithAllMine = openAllMine(board);
+      setBoard(newBoardWithAllMine);
+    }
   }
 
   function generateMine(newBoard: TBoard, firstClickedCell: TCellInfo) {
@@ -58,7 +70,7 @@ export function Board({
   }
 
   function handleCellClick(cell: TCellInfo) {
-    // Нельзя нажать, если выделено флажком, вопросов, уже открыто или проиграно
+    // ! Нельзя нажать, если выделено флажком, вопросов, уже открыто или проиграно
     if (cell.isFlagged || cell.isOpened || cell.isQuestioned || isLose) {
       return;
     }
@@ -70,11 +82,12 @@ export function Board({
       return;
     }
 
-    // Попали на мину
+    // ! Попали на мину
     if (cell.value === -1) {
       newBoard[cell.x][cell.y].isBlowned = true;
       setIsLose(true);
-      setBoard(endGame(newBoard));
+      const newBoardWithAllMine = openAllMine(newBoard);
+      setBoard(newBoardWithAllMine);
       return;
     }
 
@@ -85,6 +98,7 @@ export function Board({
     if (cell.isOpened) {
       return;
     }
+    console.log(board);
     const newBoard: TBoard = JSON.parse(JSON.stringify(board));
 
     const i = cell.x;
@@ -102,6 +116,8 @@ export function Board({
     }
 
     setBoard(newBoard);
+
+    checkWin(newBoard);
   }
 
   return (
