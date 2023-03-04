@@ -1,6 +1,6 @@
 .app {
-  width: calc(18px * 16 + 20px);
-  height: calc(18px * 16 + 60px + 20px);
+  width: calc(17px * 16 + 20px);
+  height: calc(17px * 16 + 60px + 20px);
   background-color: #c6c6c6;
   padding: 10px;
   display: flex;

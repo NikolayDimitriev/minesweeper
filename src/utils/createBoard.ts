@@ -1,5 +1,5 @@
 import { TBoard, TCellInfo } from '../common.types';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 export function createBoard(): TBoard {
   let board: TBoard = [];
@@ -12,8 +12,9 @@ export function createBoard(): TBoard {
         x: i,
         y: j,
         isOpened: false,
-        isRevealed: false,
         isFlagged: false,
+        isQuestioned: false,
+        isDefused: false,
       } as TCellInfo);
     }
     board.push(line);

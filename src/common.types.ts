@@ -4,8 +4,9 @@ export type TCellInfo = {
   x: number;
   y: number;
   isOpened: boolean;
-  isRevealed: boolean;
   isFlagged: boolean;
+  isQuestioned: boolean;
+  isDefused: boolean;
 };
 
 export type TBoard = TCellInfo[][];

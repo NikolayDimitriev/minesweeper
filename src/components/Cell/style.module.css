@@ -1,10 +1,70 @@
 .cell {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   text-align: center;
   background: url('/public/sprites.gif') no-repeat;
 }
 
 .closed {
-  background-position: 0px -50px;
+  background-position: 0px -51px;
+}
+
+.opened {
+  background-position: -17px -51px;
+}
+
+.one {
+  background-position: 0px -68px;
+}
+
+.two {
+  background-position: -17px -68px;
+}
+
+.three {
+  background-position: -34px -68px;
+}
+
+.four {
+  background-position: -51px -68px;
+}
+
+.five {
+  background-position: -68px -68px;
+}
+
+.six {
+  background-position: -85px -68px;
+}
+
+.seven {
+  background-position: -102px -68px;
+}
+
+.eight {
+  background-position: -119px -68px;
+}
+
+.flagged {
+  background-position: -34px -51px;
+}
+
+.question {
+  background-position: -51px -51px;
+}
+
+.questionOpen {
+  background-position: -68px -51px;
+}
+
+.undefusedMine {
+  background-position: -85px -51px;
+}
+
+.defusedMine {
+  background-position: -119px -51px;
+}
+
+.blownedMine {
+  background-position: -102px -51px;
 }
