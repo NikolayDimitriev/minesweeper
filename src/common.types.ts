@@ -11,3 +11,5 @@ export type TCellInfo = {
 };
 
 export type TBoard = TCellInfo[][];
+
+export type TEmoji = 'happy' | 'pressed' | 'scary' | 'cool' | 'dead';

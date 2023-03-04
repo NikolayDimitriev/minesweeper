@@ -7,7 +7,7 @@ import {
   openAllMine,
   checkOnWin,
 } from '../../utils/';
-import { TCellInfo, TBoard } from '../../common.types';
+import { TCellInfo, TBoard, TEmoji } from '../../common.types';
 import classes from './style.module.css';
 
 type TBoardProps = {
@@ -17,6 +17,7 @@ type TBoardProps = {
   setIsLose: React.Dispatch<React.SetStateAction<boolean>>;
   isFirstClick: boolean;
   setIsFirstClick: React.Dispatch<React.SetStateAction<boolean>>;
+  setEmojiState: React.Dispatch<React.SetStateAction<TEmoji>>;
 };
 
 export function Board({
@@ -26,6 +27,7 @@ export function Board({
   setIsLose,
   isFirstClick,
   setIsFirstClick,
+  setEmojiState,
 }: TBoardProps) {
   function updateBoardWithOpenedCells(board: TBoard, cell: TCellInfo) {
     const newBoardWithOpenCells = openCell(board, cell);
@@ -37,10 +39,11 @@ export function Board({
 
   function checkWin(board: TBoard) {
     const isWin = checkOnWin(board);
-    console.log('win: ', isWin);
+
     if (isWin) {
       const newBoardWithAllMine = openAllMine(board);
       setBoard(newBoardWithAllMine);
+      setEmojiState('cool');
     }
   }
 
@@ -69,7 +72,13 @@ export function Board({
     updateBoardWithOpenedCells(newBoard, firstClickedCell);
   }
 
-  function handleCellClick(cell: TCellInfo) {
+  function handleCellClick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    cell: TCellInfo
+  ) {
+    if (e.button === 2) {
+      return;
+    }
     // ! Нельзя нажать, если выделено флажком, вопросов, уже открыто или проиграно
     if (cell.isFlagged || cell.isOpened || cell.isQuestioned || isLose) {
       return;
@@ -79,6 +88,7 @@ export function Board({
     if (isFirstClick) {
       setIsFirstClick(false);
       generateMine(newBoard, cell);
+      setEmojiState('happy');
       return;
     }
 
@@ -88,14 +98,16 @@ export function Board({
       setIsLose(true);
       const newBoardWithAllMine = openAllMine(newBoard);
       setBoard(newBoardWithAllMine);
+      setEmojiState('dead');
       return;
     }
 
+    setEmojiState('happy');
     updateBoardWithOpenedCells(newBoard, cell);
   }
 
   function handleRightClick(cell: TCellInfo) {
-    if (cell.isOpened) {
+    if (cell.isOpened || isLose) {
       return;
     }
     console.log(board);
@@ -131,6 +143,7 @@ export function Board({
                 cell={cell}
                 handleCellClick={handleCellClick}
                 handleRightClick={handleRightClick}
+                setEmojiState={setEmojiState}
               />
             ))}
           </div>

@@ -24,3 +24,19 @@
   background: url('/public/sprites.gif') no-repeat;
   background-position: 0px -25px;
 }
+
+.pressed {
+  background-position: -27px -25px;
+}
+
+.scary {
+  background-position: -54px -25px;
+}
+
+.cool {
+  background-position: -81px -25px;
+}
+
+.dead {
+  background-position: -108px -25px;
+}

@@ -1,17 +1,42 @@
-import { TCellInfo } from '../../common.types';
+import { TCellInfo, TEmoji } from '../../common.types';
 import cn from 'classnames';
 import classes from './style.module.css';
 
 type TCellProps = {
   cell: TCellInfo;
-  handleCellClick: (cell: TCellInfo) => void;
+  handleCellClick: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    cell: TCellInfo
+  ) => void;
   handleRightClick: (cell: TCellInfo) => void;
+  setEmojiState: React.Dispatch<React.SetStateAction<TEmoji>>;
 };
 
-export function Cell({ cell, handleCellClick, handleRightClick }: TCellProps) {
+export function Cell({
+  cell,
+  handleCellClick,
+  handleRightClick,
+  setEmojiState,
+}: TCellProps) {
+  function changeEmojiOnScary(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    cell: TCellInfo
+  ) {
+    if (
+      cell.isOpened ||
+      cell.isFlagged ||
+      cell.isQuestioned ||
+      e.button === 2
+    ) {
+      return;
+    }
+    setEmojiState('scary');
+  }
+
   return (
     <button
-      onClick={() => handleCellClick(cell)}
+      onMouseDown={(e) => changeEmojiOnScary(e, cell)}
+      onMouseUp={(e) => handleCellClick(e, cell)}
       onContextMenu={() => handleRightClick(cell)}
       className={cn(classes.cell, {
         [classes.closed]: cell.isOpened === false,
