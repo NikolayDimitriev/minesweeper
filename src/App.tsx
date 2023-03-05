@@ -27,6 +27,7 @@ export function App() {
     setEmojiState('happy');
     setMinesCount(40);
     handleStopTimer();
+    setTimer(0);
   }
 
   function handleStartTimer() {
