@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { nanoid } from 'nanoid';
 import { Cell } from '../Cell';
 import {
@@ -24,7 +25,7 @@ type TBoardProps = {
   handleStopTimer: () => void;
 };
 
-export function Board({
+export const Board = memo(function Board({
   board,
   setBoard,
   isLose,
@@ -168,4 +169,4 @@ export function Board({
       })}
     </div>
   );
-}
+});
