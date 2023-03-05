@@ -13,3 +13,14 @@ export type TCellInfo = {
 export type TBoard = TCellInfo[][];
 
 export type TEmoji = 'happy' | 'pressed' | 'scary' | 'cool' | 'dead';
+
+export type TPosition =
+  | 'leftTop'
+  | 'rightTop'
+  | 'rightBottom'
+  | 'leftBottom'
+  | 'topLine'
+  | 'rightLine'
+  | 'bottomLine'
+  | 'leftLine'
+  | 'center';

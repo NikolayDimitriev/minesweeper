@@ -57,9 +57,9 @@ export function Board({
   }
 
   function generateMine(newBoard: TBoard, firstClickedCell: TCellInfo) {
-    let minesCount = 0;
+    let count = 0;
 
-    while (minesCount < 40) {
+    while (count < 40) {
       const x = getRandomInt(16);
       const y = getRandomInt(16);
 
@@ -74,7 +74,7 @@ export function Board({
         cell.x = x;
         cell.y = y;
         increaseCellsValuesAroundMine(newBoard, x, y);
-        minesCount++;
+        count++;
       }
     }
 
@@ -88,7 +88,7 @@ export function Board({
     if (e.button === 2) {
       return;
     }
-    // ! Нельзя нажать, если выделено флажком, вопросов, уже открыто или проиграно
+    // ! Нельзя нажать, если выделено флажком, вопросом, уже открыто или проиграно
     if (cell.isFlagged || cell.isOpened || cell.isQuestioned || isLose) {
       return;
     }
@@ -160,6 +160,7 @@ export function Board({
                 handleCellClick={handleCellClick}
                 handleRightClick={handleRightClick}
                 setEmojiState={setEmojiState}
+                isLose={isLose}
               />
             ))}
           </div>

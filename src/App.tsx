@@ -38,6 +38,7 @@ export function App() {
   }
 
   function handleStopTimer() {
+    console.log(timer);
     clearInterval(timerId as number);
     setTimerId(null);
   }
@@ -110,6 +111,7 @@ export function App() {
               [classes.seven]: Math.floor((timer % 100) / 10) === 7,
               [classes.eight]: Math.floor((timer % 100) / 10) === 8,
               [classes.nine]: Math.floor((timer % 100) / 10) === 9,
+              [classes.nine]: timer > 999,
             })}
           ></div>
           <div
@@ -123,6 +125,7 @@ export function App() {
               [classes.seven]: timer % 10 === 7,
               [classes.eight]: timer % 10 === 8,
               [classes.nine]: timer % 10 === 9,
+              [classes.nine]: timer > 999,
             })}
           ></div>
         </div>

@@ -10,6 +10,7 @@ type TCellProps = {
   ) => void;
   handleRightClick: (cell: TCellInfo) => void;
   setEmojiState: React.Dispatch<React.SetStateAction<TEmoji>>;
+  isLose: boolean;
 };
 
 export function Cell({
@@ -17,6 +18,7 @@ export function Cell({
   handleCellClick,
   handleRightClick,
   setEmojiState,
+  isLose
 }: TCellProps) {
   function changeEmojiOnScary(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -26,7 +28,8 @@ export function Cell({
       cell.isOpened ||
       cell.isFlagged ||
       cell.isQuestioned ||
-      e.button === 2
+      e.button === 2 ||
+      isLose
     ) {
       return;
     }
