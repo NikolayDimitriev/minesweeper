@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Собственная реализация игры "Сапёр"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Стек: React, TypeScript. Доп. библиотеки: nanoid, classnames
 
-## Available Scripts
+# Общее описание функциональности 
 
-In the project directory, you can run:
+- поле 16х16 клеток, 40 мин
+- слева счётчик мин от 40 до нуля, справа секундомер (от 0 до 999)
+- первый клик никогда не будет по мине, т.к. они расставляются после него, исключаю данную ячейку. Запускается секундомер
+- если рядом с открытым полем есть другие поля без мин поблизости, они открываются автоматически
+- правая клавиша ставит флажок - предполагаемое место имени (для подсказки в консоль выводится все состояние матрицы)
+- второй клик правой клавишей устанавливает вопросительный знак, третий снимает выделения
+- клик по смайлику перезапускает игру
+- испуганный смайлик - во время нажатия на ячейку, но еще не отпустили
+- при проигрыше смайлик заменяется на грустный, раскрывается карта мин
+- `победой` считывает, открытие всех ячеек и отметка на всех минах флажком
+- после победы смайлик надевает солнечные очки, секундомер останавливается
 
-### `npm start`
+# Как запустить:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm install` — установка зависимостей,
+- `npm run start` — запуск версии для разработчика,
+- `npm run build` — сборка продакт версии.
