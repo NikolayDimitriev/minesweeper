@@ -20,6 +20,8 @@ type TBoardProps = {
   setEmojiState: React.Dispatch<React.SetStateAction<TEmoji>>;
   minesCount: number;
   setMinesCount: React.Dispatch<React.SetStateAction<number>>;
+  handleStartTimer: () => void;
+  handleStopTimer: () => void;
 };
 
 export function Board({
@@ -32,6 +34,8 @@ export function Board({
   setEmojiState,
   minesCount,
   setMinesCount,
+  handleStartTimer,
+  handleStopTimer,
 }: TBoardProps) {
   function updateBoardWithOpenedCells(board: TBoard, cell: TCellInfo) {
     const newBoardWithOpenCells = openCell(board, cell);
@@ -48,6 +52,7 @@ export function Board({
       const newBoardWithAllMine = openAllMine(board);
       setBoard(newBoardWithAllMine);
       setEmojiState('cool');
+      handleStopTimer();
     }
   }
 
@@ -93,6 +98,7 @@ export function Board({
       setIsFirstClick(false);
       generateMine(newBoard, cell);
       setEmojiState('happy');
+      handleStartTimer();
       return;
     }
 
@@ -103,6 +109,7 @@ export function Board({
       const newBoardWithAllMine = openAllMine(newBoard);
       setBoard(newBoardWithAllMine);
       setEmojiState('dead');
+      handleStopTimer();
       return;
     }
 
