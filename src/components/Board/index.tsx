@@ -18,6 +18,8 @@ type TBoardProps = {
   isFirstClick: boolean;
   setIsFirstClick: React.Dispatch<React.SetStateAction<boolean>>;
   setEmojiState: React.Dispatch<React.SetStateAction<TEmoji>>;
+  minesCount: number;
+  setMinesCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export function Board({
@@ -28,6 +30,8 @@ export function Board({
   isFirstClick,
   setIsFirstClick,
   setEmojiState,
+  minesCount,
+  setMinesCount,
 }: TBoardProps) {
   function updateBoardWithOpenedCells(board: TBoard, cell: TCellInfo) {
     const newBoardWithOpenCells = openCell(board, cell);
@@ -119,12 +123,17 @@ export function Board({
     if (cell.isFlagged) {
       newBoard[i][j].isFlagged = false;
       newBoard[i][j].isQuestioned = true;
+      setMinesCount((prev) => prev + 1);
     } else if (cell.isQuestioned) {
       newBoard[i][j].isFlagged = false;
       newBoard[i][j].isQuestioned = false;
     } else {
+      if (minesCount === 0) {
+        return;
+      }
       newBoard[i][j].isFlagged = true;
       newBoard[i][j].isQuestioned = false;
+      setMinesCount((prev) => prev - 1);
     }
 
     setBoard(newBoard);

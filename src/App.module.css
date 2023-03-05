@@ -18,6 +18,61 @@
   border: 2px solid black;
 }
 
+.countMines {
+  display: flex;
+  align-items: center;
+  width: calc(14px * 3);
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  width: calc(14px * 3);
+}
+
+.number {
+  width: 14px;
+  height: 23px;
+  background: url('/public/sprites.gif') no-repeat;
+  background-position: -125px 0px;
+}
+
+.one {
+  background-position: 1px 0px;
+}
+
+.two {
+  background-position: -13px 0px;
+}
+
+.three {
+  background-position: -27px 0px;
+}
+
+.four {
+  background-position: -41px 0px;
+}
+
+.five {
+  background-position: -55px 0px;
+}
+
+.six {
+  background-position: -69px 0px;
+}
+
+.seven {
+  background-position: -83px 0px;
+}
+
+.eight {
+  background-position: -97px 0px;
+}
+
+.nine {
+  background-position: -111px 0px;
+}
+
 .mainBtn {
   width: 26px;
   height: 26px;
