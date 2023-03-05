@@ -1,4 +1,6 @@
-# Собственная реализация игры "Сапёр"
+[![Netlify Status](https://api.netlify.com/api/v1/badges/38b1d472-134d-4a6b-b534-a1549db6491f/deploy-status)](https://app.netlify.com/sites/astounding-mousse-70c52e/deploys)
+
+# Собственная реализация игры "Сапёр". [Netlify](https://astounding-mousse-70c52e.netlify.app/)
 
 Стек: React, TypeScript. Доп. библиотеки: nanoid, classnames
 
